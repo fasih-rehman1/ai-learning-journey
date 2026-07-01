@@ -1,0 +1,79 @@
+User
+
+↓
+
+Question
+
+↓
+
+Embedding
+
+↓
+
+Vector Database
+
+↓
+
+Relevant Chunks
+
+↓
+
+LLM
+
+↓
+
+Answer
+
+
+╔══════════════════════════════════════════════════════════════════╗
+║                     BASIC RAG SYSTEM                            ║
+╚══════════════════════════════════════════════════════════════════╝
+
+                         ┌─────────────────┐
+                         │   USER QUERY    │
+                         │ "Refund policy?"│
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                    ┌─────────────────────────┐
+                    │   STEP 1: EMBEDDING     │
+                    │   (Convert to vectors)  │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │   STEP 2: RETRIEVAL     │
+                    │   (Search Vector DB)    │
+                    │   Top 5 relevant chunks │
+                    └────────────┬────────────┘
+                                 │
+                    ┌────────────▼────────────┐
+                    │   STEP 3: CONTEXT        │
+                    │   SELECTION              │
+                    │   "Refund policy section"│
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │   STEP 4: GENERATION    │
+                    │   (LLM + Context)       │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                         ┌─────────────────┐
+                         │   FINAL ANSWER  │
+                         │ "Refund in 30d" │
+                         └─────────────────┘
+
+INPUTS:          OUTPUTS:
+- User Query     - Final Answer
+- Retrieved      - Source Citations
+  Documents
+- System Prompt
+
+PROCESS:
+1. Embed Query
+2. Search Vector DB
+3. Retrieve Top K
+4. Augment Prompt
+5. Generate Answer
